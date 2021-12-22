@@ -1,5 +1,5 @@
 # Mapping-Mountainous-Arctic-Lakes-From-the-Air
-Mapping Mountainous Arctic Lake Watersheds From the Air
+This repository is part of a bigger project lead by Cristian Gudasz at Umeå University
 
 
 ![alt text](AwsomeLiDAR.png)
