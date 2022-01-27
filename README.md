@@ -1,8 +1,8 @@
 # Mapping-Mountainous-Arctic-Lakes-From-the-Air
-Mapping Mountainous Arctic Lake Watersheds From the Air
+This repository is part of a bigger project lead by Cristian Gudasz at Umeå University
 
 
-![alt text](AwesomeLiDAR.png)
+![alt text](AwsomeLiDAR.png)
 
 ## Anaconda -python 3.8.12  
 **Not sure whats going on with h5py, will fix in container later**   
@@ -20,4 +20,10 @@ python Y:/William/GitHub/Mapping-Mountainous-Arctic-Lakes-From-the-Air/Create_is
 python Y:/William/GitHub/Mapping-Mountainous-Arctic-Lakes-From-the-Air/Split_dem.py D:/Abisko/original_dem/ D:/Abisko/isobasin_watersheds/watersheds.shp D:/temp/abisko/ D:/Abisko/split_dems/
 
 # Run the script by giving it paths to the data
+<<<<<<< HEAD
 python Y:/William/GitHub/Mapping-Mountainous-Arctic-Lakes-From-the-Air/Hydrological_processing.py D:/Abisko/Abisko_watersheds/National_2m_dem/ D:/temp/abisko/ --streaminitation=2500 --outlets=D:/Abisko/Abisko_watersheds/lake_outlets/outlets.shp --watershed_dir=D:/Abisko/Abisko_watersheds/watersheds/
+=======
+python Y:/William/GitHub/Mapping-Mountainous-Arctic-Lakes-From-the-Air/Hydrological_processing.py D:/Abisko/Abisko_watersheds/National_2m_dem/ D:/temp/test_raided_speed/ --streaminitation=2500 --outlets=D:/Abisko/Abisko_watersheds/lake_outlets/outlets.shp --watershed_dir=D:/Abisko/Abisko_watersheds/watersheds/
+
+This code is dependent on WhiteboxTools which was installed using pip install WhiteboxTools: https://www.whiteboxgeo.com/manual/wbt_book/preface.html
+>>>>>>> 248934e7d7082512405fbae403bf4452ac279e3b
