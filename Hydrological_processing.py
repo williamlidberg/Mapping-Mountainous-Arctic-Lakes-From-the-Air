@@ -70,7 +70,7 @@ class Hydro_procesing:
                     output = watershed_dir + basin.replace('.tif','.shp')
                 )
 
-    def clean_temp(temp_dir):
+    def clean_temp(self):
         for root, dir, fs in os.walk(self.temp_dir):
             for f in fs:
                 if 'temp' in f:
