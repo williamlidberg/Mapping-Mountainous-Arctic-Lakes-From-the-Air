@@ -7,7 +7,7 @@ from osgeo import ogr
 wbt = whitebox.WhiteboxTools()
 parser = argparse.ArgumentParser(description = 'Create isobasins and split DEM.')
 
-class Split_dem:
+class Split:
     def __init__(self, temp_dir):
         self.temp_dir = temp_dir
 
