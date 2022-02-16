@@ -8,22 +8,39 @@ Mapping Mountainous Arctic Lake Watersheds From the Air
 pip install whitebox==2.0.3  
 conda install -c conda-forge gdal -y  
 conda install geopandas -y  
-
+conda install -c conda-forge rasterio -y
 
 The original DEM is 15 GB and had to be split into smaller isobasins. use the following command to split the original high resolution DEM into smaller isobasins. 
 
-# Extract high resolution flow accumulation from DEM resampled to 1 m
-python Y:/William/GitHub/Mapping-Mountainous-Arctic-Lakes-From-the-Air/Hydrological_processing.py D:/Abisko/resampled_dem/ E:/Temp/ 
+## Extract high resolution flow accumulation from DEM resampled to 2 m
+python Y:/William/GitHub/Mapping-Mountainous-Arctic-Lakes-From-the-Air/Hydrological_processing.py E:/Temp/ D:/Abisko/Processing/original_dem/ D:/Abisko/Processing/pre_processed_dem/ D:/Abisko/Processing/flow_pointer/ D:/Abisko/Processing/flow_accumulation/
 
-# Locate lake outlets from lake polygons and flow accumulation - repair geometry first
-python Y:/William/GitHub/Mapping-Mountainous-Arctic-Lakes-From-the-Air/Find_inflow_outflow_points.py E:/Temp/dem1m_flowacc_temp.tif D:/Abisko/abisko_lakes.shp E:/Temp/ D:/Abisko/clip_flowacc_lakes/
+## Clip flowacc to lake polygons - repair geometry first
+python Y:/William/GitHub/Mapping-Mountainous-Arctic-Lakes-From-the-Air/split_flowacc_by_lake.py E:/Temp/ D:/Abisko/Processing/flow_accumulation/dem2m.tif D:/Abisko/Processing/manually_digitized_lakes/abisko_lakes.shp D:/Abisko/Processing/clipped_flowaccumulation/ 
+
+## Find lake outlets
+python Y:/William/GitHub/Mapping-Mountainous-Arctic-Lakes-From-the-Air/locate_lake_outlets.py D:/Abisko/Processing/clipped_flowaccumulation/ D:/Abisko/Processing/outlet_points/
+
+## Extract Individual watersheds
+python Y:/William/GitHub/Mapping-Mountainous-Arctic-Lakes-From-the-Air/Lake_watersheds.py E:/Temp/ D:/Abisko/Processing/original_dem/ D:/Abisko/Processing/flow_pointer/ D:/Abisko/test_outlets.shp D:/Abisko/Processing/individual_watersheds/ D:/Abisko/Processing/watersheds_raster/
+
+ 
+
+
+
+
+## old
+
+
+
+
+
+
+# Extract watersheds and streams
+python Y:/William/GitHub/Mapping-Mountainous-Arctic-Lakes-From-the-Air/Hydrological_processing.py D:/Abisko/Abisko_watersheds/National_2m_dem/ D:/temp/abisko/ --streaminitation=2500 --outlets=D:/Abisko/Abisko_watersheds/lake_outlets/outlets.shp --watershed_dir=D:/Abisko/Abisko_watersheds/watersheds/
 
 # Extract high resolution flow accumulation from original DEM
 python Y:/William/GitHub/Mapping-Mountainous-Arctic-Lakes-From-the-Air/Hydrological_processing.py D:/Abisko/original_dem/ E:/Temp/ 
-
-# Locate lake outlets from lake polygons and flow accumulation - repair geometry first
-python Y:/William/GitHub/Mapping-Mountainous-Arctic-Lakes-From-the-Air/Find_inflow_outflow_points.py E:/Temp/raw_dem_flowacc_temp.tif D:/Abisko/abisko_lakes.shp E:/Temp/ D:/Abisko/clip_flowacc_lakes/
-
 
 
 

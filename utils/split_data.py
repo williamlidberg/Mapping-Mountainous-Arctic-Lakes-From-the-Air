@@ -32,3 +32,9 @@ def split_raster(polygon_dir, split_raster_dir):
                 output = split_dem_dir + f.replace('.shp', '.tif'), 
                 maintain_dimensions=False
             )
+
+def clean_temp(self):
+    for root, dir, fs in os.walk(self.temp_dir):
+        for f in fs:
+            if 'temp' in f:
+                os.remove(os.path.join(root, f))
