@@ -22,8 +22,9 @@ python Y:/William/GitHub/Mapping-Mountainous-Arctic-Lakes-From-the-Air/split_flo
 python Y:/William/GitHub/Mapping-Mountainous-Arctic-Lakes-From-the-Air/locate_lake_outlets.py D:/Abisko/Processing/clipped_flowaccumulation/ D:/Abisko/Processing/outlet_points/
 
 ## Extract Individual watersheds
-python Y:/William/GitHub/Mapping-Mountainous-Arctic-Lakes-From-the-Air/Lake_watersheds.py E:/Temp/ D:/Abisko/Processing/original_dem/ D:/Abisko/Processing/flow_pointer/ D:/Abisko/test_outlets.shp D:/Abisko/Processing/individual_watersheds/ D:/Abisko/Processing/watersheds_raster/
+python Y:/William/GitHub/Mapping-Mountainous-Arctic-Lakes-From-the-Air/Lake_watersheds.py E:/Temp/ D:/Abisko/Processing/original_dem/ D:/Abisko/Processing/flow_pointer/ D:/Abisko/Processing/flow_accumulation/ D:/Abisko/test_outlets.shp D:/Abisko/Processing/individual_watersheds/ D:/Abisko/Processing/watersheds_raster/
 
+## summary statistics
  
 
 
