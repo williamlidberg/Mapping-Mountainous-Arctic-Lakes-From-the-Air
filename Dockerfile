@@ -1,5 +1,4 @@
-FROM nvcr.io/nvidia/tensorflow:21.12-tf2-py3
-
+FROM ubuntu:latest
 RUN apt-get update
 # install dependencies for opencv
 RUN pip install tifffile
