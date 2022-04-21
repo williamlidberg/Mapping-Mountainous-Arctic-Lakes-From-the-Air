@@ -5,7 +5,13 @@ Mapping Mountainous Arctic Lake Watersheds From the Air
 
 ![alt text](AwesomeLiDAR.png)
 
-
+## Clone repository and create docker cotnainer
+cd /mnt/Extension_100TB/William/Projects/Abisko_lakes/code/
+sudo git clone https://github.com/williamlidberg/Mapping-Mountainous-Arctic-Lakes-From-the-Air
+cd /mnt/Extension_100TB/William/Projects/Abisko_lakes/code/Mapping-Mountainous-Arctic-Lakes-From-the-Air/
+docker build -t abisko .
+docker run -it  --mount type=bind,source=/mnt/Extension_100TB/William/Projects/Abisko_lakes/data/,target=/data abisko
+git clone https://github.com/williamlidberg/Mapping-Mountainous-Arctic-Lakes-From-the-Air
 ## Anaconda -python 3.8.12  
 pip install whitebox==2.0.3  
 conda install -c conda-forge gdal -y  
