@@ -1,7 +1,13 @@
-FROM nvcr.io/nvidia/tensorflow:21.12-tf2-py3
-
+FROM ubuntu:latest
 RUN apt-get update
-# install dependencies for opencv
+RUN apt-get update && apt-get install -y python3-pip
+RUN mkdir code
+RUN mkdir data
+COPY . /code
+
+ARG DEBIAN_FRONTEND=noninteractive
+ENV TZ=Europe/Moscow
+RUN apt-get install -y tzdata
 RUN pip install tifffile
 RUN pip install whitebox==2.0.3
 # added to install splitraster witout numpy version conclict
@@ -16,8 +22,3 @@ RUN apt-get install -y libgdal-dev
 RUN export CPLUS_INCLUDE_PATH=/usr/include/gdal
 RUN export C_INCLUDE_PATH=/usr/include/gdal
 RUN pip install GDAL
-
-# create mount points for data and source code in container's start directory
-RUN mkdir /workspace/data
-RUN mkdir /workspace/code
-
