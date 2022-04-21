@@ -3,6 +3,7 @@ RUN apt-get update
 RUN apt-get update && apt-get install -y python3-pip
 RUN mkdir code
 RUN mkdir data
+RUN mkdir temp
 COPY . /code
 
 ARG DEBIAN_FRONTEND=noninteractive

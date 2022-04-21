@@ -10,8 +10,18 @@ cd /mnt/Extension_100TB/William/Projects/Abisko_lakes/code/
 sudo git clone https://github.com/williamlidberg/Mapping-Mountainous-Arctic-Lakes-From-the-Air
 cd /mnt/Extension_100TB/William/Projects/Abisko_lakes/code/Mapping-Mountainous-Arctic-Lakes-From-the-Air/
 docker build -t abisko .
-docker run -it  --mount type=bind,source=/mnt/Extension_100TB/William/Projects/Abisko_lakes/data/,target=/data abisko
-git clone https://github.com/williamlidberg/Mapping-Mountainous-Arctic-Lakes-From-the-Air
+docker run -it  --mount type=bind,source=/mnt/Extension_100TB/William/Projects/Abisko_lakes/data/,target=/data --mount type=bind,source=/mnt/ramdisk/,target=/temp abisko
+
+Make directories 
+mkdir corrected_dem_dir
+mkdir flow_pointer_dir
+mkdir flow_accumulation_dir
+
+python /code/Hydrological_processing.py /Temp/ data/ corrected_dem_dir/ flow_pointer_dir/ flow_accumulation_dir/
+
+
+
+
 ## Anaconda -python 3.8.12  
 pip install whitebox==2.0.3  
 conda install -c conda-forge gdal -y  
