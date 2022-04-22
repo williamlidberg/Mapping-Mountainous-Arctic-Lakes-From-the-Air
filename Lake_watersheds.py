@@ -71,10 +71,10 @@ def main(temp_dir, dem_dir, d8_pointer, d8_flowacc, merged_outlets, individual_w
     watershed = watersheds(temp_dir)
     for f in os.listdir(dem_dir):
         if f.endswith('.tif'):
-            #watershed.unnest_basins(f, d8_pointer, d8_flowacc, merged_outlets)
-            #watershed.split_polygon(individual_watersheds_dir)
-            watershed.split_raster(dem_dir, f, individual_watersheds_dir, split_raster_dir)
-            #watershed.clean_temp()
+            watershed.unnest_basins(f, d8_pointer, d8_flowacc, merged_outlets)
+            watershed.split_polygon(individual_watersheds_dir)
+            #watershed.split_raster(dem_dir, f, individual_watersheds_dir, split_raster_dir)
+            watershed.clean_temp()
 
 
 

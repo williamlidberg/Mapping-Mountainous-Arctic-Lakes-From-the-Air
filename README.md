@@ -10,12 +10,23 @@ cd /mnt/Extension_100TB/William/Projects/Abisko_lakes/code/
 sudo git clone https://github.com/williamlidberg/Mapping-Mountainous-Arctic-Lakes-From-the-Air
 cd /mnt/Extension_100TB/William/Projects/Abisko_lakes/code/Mapping-Mountainous-Arctic-Lakes-From-the-Air/
 docker build -t abisko .
-docker run -it  --mount type=bind,source=/mnt/Extension_100TB/William/Projects/Abisko_lakes/data/,target=/data --mount type=bind,source=/mnt/ramdisk/,target=/temp abisko
+docker run -it  --mount type=bind,source=/mnt/Extension_100TB/William/Projects/Abisko_lakes/data/,target=/data --mount type=bind,source=/mnt/ramdisk/,target=/temp --mount type=bind,source=/mnt/Extension_100TB/William/GitHub/Mapping-Mountainous-Arctic-Lakes-From-the-Air/,target=/code abisko
 
 ## Extract high resolution flow accumulation from raw DEM
-python3 /code/Hydrological_processing.py /Temp/ /data/aggregate2m/ /data/output/pre_processed_dem/ /data/output/flow_pointer_dir/ /data/output/flow_accumulation_dir/
+python3 /code/Hydrological_processing.py /temp/ /data/aggregate2m/ /data/output/pre_processed_dem/ /data/output/flow_pointer_dir/ /data/output/flow_accumulation_dir/
 
-python3 /split_flowacc_by_lake.py /Temp/ /data/output/flow_accumulation_dir/dem1m.tif /data/Abisko_lakes_polygons.shp /data/output/clipped_flowaccumulation/ 
+## Clip flowacc to lake polygons - repair geometry first
+The highest flowaccumulation within each lake polygon can be assumed to be the lake outlet. Therefore the large flow accumulation raster were clipped by each lake polygon.
+python3 /code/split_flowacc_by_lake.py /temp/ /data/output/flow_accumulation_dir/dem2m.tif /data/Abisko_lakes_polygons/Abisko_lakes.shp /data/output/clipped_flowaccumulation/ 
+
+## Find lake outlets
+This script finds the maximum flow accumulation value of each lake and saves them as point shapefiles. 
+python3 /code/locate_lake_outlets.py /data/output/clipped_flowaccumulation/ /data/output/outlet_points/
+
+## Merge lake outlets
+
+## Extract Individual watersheds
+python3 code/Lake_watersheds.py /temp/ /data/aggregate2m/ /data/output/flow_pointer_dir/ /data/output/flow_accumulation_dir/ data/test_outlets.shp data/output/individual_watersheds/ data/output/watersheds_raster/
 
 
 ## Anaconda -python 3.8.12  
@@ -26,11 +37,6 @@ conda install -c conda-forge rasterio -y
 
 The original DEM is 15 GB and had to be split into smaller isobasins. use the following command to split the original high resolution DEM into smaller isobasins. 
 
-## Extract high resolution flow accumulation from DEM resampled to 2 m
-python Y:/William/GitHub/Mapping-Mountainous-Arctic-Lakes-From-the-Air/Hydrological_processing.py E:/Temp/ D:/Abisko/Processing/original_dem/ D:/Abisko/Processing/pre_processed_dem/ D:/Abisko/Processing/flow_pointer/ D:/Abisko/Processing/flow_accumulation/
-
-## Clip flowacc to lake polygons - repair geometry first
-python Y:/William/GitHub/Mapping-Mountainous-Arctic-Lakes-From-the-Air/split_flowacc_by_lake.py E:/Temp/ D:/Abisko/Processing/flow_accumulation/dem2m.tif D:/Abisko/Processing/manually_digitized_lakes/abisko_lakes.shp D:/Abisko/Processing/clipped_flowaccumulation/ 
 
 ## Find lake outlets
 python Y:/William/GitHub/Mapping-Mountainous-Arctic-Lakes-From-the-Air/locate_lake_outlets.py D:/Abisko/Processing/clipped_flowaccumulation/ D:/Abisko/Processing/outlet_points/
