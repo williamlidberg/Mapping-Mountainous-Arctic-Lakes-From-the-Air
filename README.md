@@ -12,14 +12,10 @@ cd /mnt/Extension_100TB/William/Projects/Abisko_lakes/code/Mapping-Mountainous-A
 docker build -t abisko .
 docker run -it  --mount type=bind,source=/mnt/Extension_100TB/William/Projects/Abisko_lakes/data/,target=/data --mount type=bind,source=/mnt/ramdisk/,target=/temp abisko
 
-Make directories 
-mkdir corrected_dem_dir
-mkdir flow_pointer_dir
-mkdir flow_accumulation_dir
+## Extract high resolution flow accumulation from raw DEM
+python3 /code/Hydrological_processing.py /Temp/ /data/aggregate2m/ /data/output/pre_processed_dem/ /data/output/flow_pointer_dir/ /data/output/flow_accumulation_dir/
 
-python /code/Hydrological_processing.py /Temp/ data/ corrected_dem_dir/ flow_pointer_dir/ flow_accumulation_dir/
-
-
+python3 /split_flowacc_by_lake.py /Temp/ /data/output/flow_accumulation_dir/dem1m.tif /data/Abisko_lakes_polygons.shp /data/output/clipped_flowaccumulation/ 
 
 
 ## Anaconda -python 3.8.12  
