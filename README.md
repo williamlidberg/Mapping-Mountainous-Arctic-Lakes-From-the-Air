@@ -24,9 +24,10 @@ This script finds the maximum flow accumulation value of each lake and saves the
 python3 /code/locate_lake_outlets.py /data/output/clipped_flowaccumulation/ /data/output/outlet_points/
 
 ## Merge lake outlets
+python3 /code/merge_lake_outlets.py /data/output/outlet_points/ /data/output/merged_lake_outlets
 
 ## Extract Individual watersheds
-python3 code/Lake_watersheds.py /temp/ /data/aggregate2m/ /data/output/flow_pointer_dir/ /data/output/flow_accumulation_dir/ data/test_outlets.shp data/output/individual_watersheds/ data/output/watersheds_raster/
+python3 /code/Lake_watersheds.py /temp/ /data/aggregate2m/ /data/output/flow_pointer_dir/ /data/output/flow_accumulation_dir/ /data/output/merged_lake_outlets.shp /data/output/individual_watersheds/ /data/output/watersheds_raster/
 
 
 ## Anaconda -python 3.8.12  

@@ -19,6 +19,7 @@ class watersheds:
             output = self.temp_dir + 'temp_snapped.shp', 
             snap_dist = 10
         )
+        print('snapped pout points with 10m')
         wbt.unnest_basins(
             d8_pntr = d8_pointer + f, 
             pour_pts = self.temp_dir + 'temp_snapped.shp', 
