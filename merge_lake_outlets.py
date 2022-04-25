@@ -11,6 +11,7 @@ def main(shape_file_dir, merged_file):
     gfd = pandas.concat([geopandas.read_file(shp)
     for shp in shapefiles
     ]).pipe(geopandas.GeoDataFrame)
+    gfd.crs = 'epsg: 3006'
     gfd.to_file(folder / (merged_file+'.shp'))
 
 
